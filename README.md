@@ -39,6 +39,12 @@ From the same folder, type `mpiexec -n <Node>  nrniv -mpi -python init.py`
 ## TO DO in the future
 
 1. Add realistic LGN inputs
-2. Tune connectivity following experimental data from the synaptic physiology database
+2. Tune connectivity following experimental data from the synaptic physiology database. Change parameters in cfg.py
 3. Add synaptic dynamics (LTP, STD) adn synaptic strength from same database
-4. Tune unknown parameters for reproducing *in-vivo* activity.
+4. Add input normalization to all neurons, to reproduce *synaptic democracy*
+5. Tune unknown parameters for reproducing *in-vivo* activity.
+
+## Bugs
+
+1. The models with `'AllActive'` segments are not currently working.
+2. Others?
