@@ -75,12 +75,6 @@ ASSIGNED {
 BREAKPOINT {
     i = weight * g * (v - vpeer)
 }
-NET_RECEIVE(weight (uS)) {
-  : VERBATIM
-  :  printf("FLAG: %g\n",_lflag);
-  : ENDVERBATIM
-   g = g + weight
-}
 
 
 
