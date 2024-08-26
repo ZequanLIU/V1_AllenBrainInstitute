@@ -67,7 +67,7 @@ def L1_pop(netParams, inh_cellNumbers={'Htr3a': 999}, model='Peri', layer='VisL1
             k+=1
         netParams.popParams[label]={'cellModel': model, 'cellType': label, 'numCells': cellNumber,
                                                    'diversity': True, 'ynormRange': layerBoundaries[layer]}
-# Layer 2 definition. Components: i1Htr31 (8 models), Pvalb (3 models), i2/3Sst (4 models), i2/3Htr3a, E2/3 (3 models)
+# Layer 2/3 definition. Components: i1Htr31 (8 models), Pvalb (3 models), i2/3Sst (4 models), i2/3Htr3a, E2/3 (3 models)
 def L23_pop(netParams, inh_cellNumbers={'Pvalb': 640, 'Sst': 464,'Htr3a': 1107}, exc_cellNumbers={'E': 12689},
             model='Peri', layer='VisL2_3'):
     layerBoundaries = layers_geometry()
@@ -93,6 +93,120 @@ def L23_pop(netParams, inh_cellNumbers={'Pvalb': 640, 'Sst': 464,'Htr3a': 1107},
         netParams.popParams[label]={'cellModel': model, 'cellType': label, 'numCells': cellNumber,
                                                    'diversity': True, 'ynormRange': layerBoundaries[layer]}
 
+# Layer 4 definition. Components: 
+# - i4Pvalb (2 models)
+# - i4Sst (2 models)
+# - i4Htr3a (1 model)
+# - E4 (31 models)
+# 
+# - 963 cells of i4Pvalb, represented by 2 different models
+# - 553 cells of i4Sst, represented by 2 different models
+# - 270 cells of i4Htr3a, represented by 1 model
+# - 10254 cells of E4, represented by 31 different models
+def L4_pop(netParams, inh_cellNumbers={'Pvalb': 963, 'Sst': 553, 'Htr3a': 270}, exc_cellNumbers={'E': 10254},
+           model='Peri', layer='VisL4'):
+    layerBoundaries = layers_geometry()
+    
+    for cellType, cellNumber in inh_cellNumbers.items():
+        cellFiles = glob.glob('../cells/NetPyNE_cells/%s/%s%s*_%s_cellParams.pkl' % (layer, layer, cellType, model))
+        k = 0
+        for neuronModel in cellFiles:
+            label = layer + cellType
+            netParams.loadCellParamsRule(label=label + '_' + str(k), fileName=neuronModel)
+            netParams.renameCellParamsSec(label=label + '_' + str(k), oldSec='soma_0', newSec='soma')
+            k += 1
+        netParams.popParams[label] = {
+            'cellModel': model, 'cellType': label, 'numCells': cellNumber,
+            'diversity': True, 'ynormRange': layerBoundaries[layer]}
+    
+    for cellType, cellNumber in exc_cellNumbers.items():
+        cellFiles = glob.glob('../cells/NetPyNE_cells/%s/%s%s*_%s_cellParams.pkl' % (layer, layer, cellType, model))
+        k = 0
+        for neuronModel in cellFiles:
+            label = layer + cellType
+            netParams.loadCellParamsRule(label=label + '_' + str(k), fileName=neuronModel)
+            netParams.renameCellParamsSec(label=label + '_' + str(k), oldSec='soma_0', newSec='soma')
+            k += 1
+        netParams.popParams[label] = {
+            'cellModel': model, 'cellType': label, 'numCells': cellNumber,
+            'diversity': True, 'ynormRange': layerBoundaries[layer]}
+        
+# Layer 5 definition. Components: 
+# - i5Pvalb (9 models)
+# - i5Sst (5 models)
+# - i5Htr3a (4 models)
+# - E5 (27 models)
+# 
+# - 613 cells of i5Pvalb, represented by 9 different models
+# - 555 cells of i5Sst, represented by 5 different models
+# - 117 cells of i5Htr3a, represented by 4 different models
+# - 7569 cells of E5, represented by 27 different models
+def L5_pop(netParams, inh_cellNumbers={'Pvalb': 613, 'Sst': 555, 'Htr3a': 117}, exc_cellNumbers={'E': 7569},
+           model='Peri', layer='VisL5'):
+    layerBoundaries = layers_geometry()
+    
+    for cellType, cellNumber in inh_cellNumbers.items():
+        cellFiles = glob.glob('../cells/NetPyNE_cells/%s/%s%s*_%s_cellParams.pkl' % (layer, layer, cellType, model))
+        k = 0
+        for neuronModel in cellFiles:
+            label = layer + cellType
+            netParams.loadCellParamsRule(label=label + '_' + str(k), fileName=neuronModel)
+            netParams.renameCellParamsSec(label=label + '_' + str(k), oldSec='soma_0', newSec='soma')
+            k += 1
+        netParams.popParams[label] = {
+            'cellModel': model, 'cellType': label, 'numCells': cellNumber,
+            'diversity': True, 'ynormRange': layerBoundaries[layer]}
+    
+    for cellType, cellNumber in exc_cellNumbers.items():
+        cellFiles = glob.glob('../cells/NetPyNE_cells/%s/%s%s*_%s_cellParams.pkl' % (layer, layer, cellType, model))
+        k = 0
+        for neuronModel in cellFiles:
+            label = layer + cellType
+            netParams.loadCellParamsRule(label=label + '_' + str(k), fileName=neuronModel)
+            netParams.renameCellParamsSec(label=label + '_' + str(k), oldSec='soma_0', newSec='soma')
+            k += 1
+        netParams.popParams[label] = {
+            'cellModel': model, 'cellType': label, 'numCells': cellNumber,
+            'diversity': True, 'ynormRange': layerBoundaries[layer]}
+
+# Layer 6 definition. Components: 
+# - i6Pvalb (4 models)
+# - i6Sst (4 models)
+# - i6Htr3a (2 models)
+# - E6 (5 models)
+# 
+# - 1052 cells of i6Pvalb, represented by 4 different models
+# - 1059 cells of i6Sst, represented by 4 different models
+# - 192 cells of i6Htr3a, represented by 2 different models
+# - 12882 cells of E6, represented by 5 different models
+def L6_pop(netParams, inh_cellNumbers={'Pvalb': 1052, 'Sst': 1059, 'Htr3a': 192}, exc_cellNumbers={'E': 12882},
+           model='Peri', layer='VisL6'):
+    layerBoundaries = layers_geometry()
+    
+    for cellType, cellNumber in inh_cellNumbers.items():
+        cellFiles = glob.glob('../cells/NetPyNE_cells/%s/%s%s*_%s_cellParams.pkl' % (layer, layer, cellType, model))
+        k = 0
+        for neuronModel in cellFiles:
+            label = layer + cellType
+            netParams.loadCellParamsRule(label=label + '_' + str(k), fileName=neuronModel)
+            netParams.renameCellParamsSec(label=label + '_' + str(k), oldSec='soma_0', newSec='soma')
+            k += 1
+        netParams.popParams[label] = {
+            'cellModel': model, 'cellType': label, 'numCells': cellNumber,
+            'diversity': True, 'ynormRange': layerBoundaries[layer]}
+    
+    for cellType, cellNumber in exc_cellNumbers.items():
+        cellFiles = glob.glob('../cells/NetPyNE_cells/%s/%s%s*_%s_cellParams.pkl' % (layer, layer, cellType, model))
+        k = 0
+        for neuronModel in cellFiles:
+            label = layer + cellType
+            netParams.loadCellParamsRule(label=label + '_' + str(k), fileName=neuronModel)
+            netParams.renameCellParamsSec(label=label + '_' + str(k), oldSec='soma_0', newSec='soma')
+            k += 1
+        netParams.popParams[label] = {
+            'cellModel': model, 'cellType': label, 'numCells': cellNumber,
+            'diversity': True, 'ynormRange': layerBoundaries[layer]}
+
 ###############################################################################
 ## NETWORK CONNECTIVITY
 ###############################################################################
@@ -108,15 +222,25 @@ def initialize_synaptic_mechs(netParams):
     netParams.synMechParams['GABAss'] = {'mod': 'MyExp2SynBB', 'tau1': 200, 'tau2': 400, 'e': -80}
     netParams.synMechParams['gap'] = {'mod': 'ElectSyn', 'g': 1}
 
-# LGN inputs definition
-def LGN_pop(netParams, label='LGN', layer='LGN', numCells=2, spkTimes=[[0,100], [100,200]]):
+# LGN inputs definition  
+def LGN_pop(netParams, label='LGN', layer='LGN', spikeFile='spikes.h5'):
     # Initialize stimuli. Is the LGN input to all layers
-    layerBoundaries=layers_geometry()
+    # Initialize stimuli using the spike times from the external file
+    layerBoundaries = layers_geometry()
+
     # Define the input populations
     # TODO: Run the LGN model from Allen Brain to extract spike times from a movie or image. Adjust conenctivity
     #  parameters
-    netParams.popParams[label] = {'cellModel': 'VecStim', 'numCells': numCells, 'spkTimes': spkTimes,
-                                  'ynormRange': layerBoundaries[layer]}
+
+    # Use VecStim with imported spike times
+    netParams.popParams[label] = {
+        'cellModel': 'VecStim',
+        'numCells': None,  # Num cells will be inferred from the spike file
+        'spkTimes': {'fileName': spikeFile},  # Specify the spike file
+        'ynormRange': layerBoundaries[layer]
+    }
+
+    
 def LGN_stimuli(netParams, popInput='LGN', popTarget=['VisL1Htr3a']):
     for postPop in popTarget:
         netParams.connParams[popInput + '->' + postPop] = {
@@ -205,6 +329,7 @@ def popConnection(netParams, popInput='VisL1Htr3a', popTarget='VisL1Htr3a', sec=
         'synMech': synMech,
         'gapJunction': gap, # NetPyNE auto makes these junctions bidirectional so we don't want to read the direction in twice
     }
+
 # Define excitatory connections
 def exc_connections(netParams, popInput=['VisL2_3E'],
                     popTarget=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3Sst', 'VisL2_3Htr3a', 'VisL2_3E'],
@@ -219,9 +344,26 @@ def exc_connections(netParams, popInput=['VisL2_3E'],
 
     for popsIn in popInput:
         for popsOut in popTarget:
+            # Connection Identifiers
+            conn_label = f'{popsIn}->{popsOut}'
+            
+            # Extracting connection probability parameters from GaussianFit
+            if conn_label in GaussianFit.columns:
+                p_max, sigma = eval(GaussianFit.loc['synapses', conn_label])
+                probability = lambda d: p_max * np.exp(-d**2 / (2 * sigma**2))
+            elif conn_label in ConnectionProbability.columns:
+                # Connection Probability from ConnectionProbability
+                p_base, p_mod, p_max = eval(ConnectionProbability.loc['synapses', conn_label])
+                probability = p_base * p_mod  # Combining the base probability and the connection probability of the correction factor
+            else:
+                # Default probability if no corresponding connection is found
+                probability = 0.5
+            
+            # Setting Connection Parameters
             popConnection(netParams, popInput=popsIn, popTarget=popsOut, sec=sec, loc=loc, weight=weight,
-                          delay=delay, synMech=synMech, probability=0.5)
-# Define inhibitory connections
+                          delay=delay, synMech=synMech, probability=probability)
+
+# Define inhibitory connections       
 def inh_connections(netParams, popInput=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3Sst', 'VisL2_3Htr3a'],
                     popTarget=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3Sst', 'VisL2_3Htr3a', 'VisL2_3E'],
                     sec='soma', loc=0.5, weight=5e-3, delay=1, synMech='GABAA'):
@@ -235,8 +377,20 @@ def inh_connections(netParams, popInput=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3S
 
     for popsIn in popInput:
         for popsOut in popTarget:
+            conn_label = f'{popsIn}->{popsOut}'
+            
+            if conn_label in GaussianFit.columns:
+                p_max, sigma = eval(GaussianFit.loc['synapses', conn_label])
+                probability = lambda d: p_max * np.exp(-d**2 / (2 * sigma**2))
+            elif conn_label in ConnectionProbability.columns:
+                p_base, p_mod, p_max = eval(ConnectionProbability.loc['synapses', conn_label])
+                probability = p_base * p_mod  
+            else:
+                probability = 0.5
+            
             popConnection(netParams, popInput=popsIn, popTarget=popsOut, sec=sec, loc=loc, weight=weight,
-                          delay=delay, synMech=synMech, probability=0.5)
+                          delay=delay, synMech=synMech, probability=probability)
+
 # Define gap junctions connections
 def gap_connections(netParams, popInput=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3Sst', 'VisL2_3Htr3a'],
                     popTarget=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3Sst', 'VisL2_3Htr3a'],
@@ -251,8 +405,20 @@ def gap_connections(netParams, popInput=['VisL1Htr3a', 'VisL2_3Pvalb', 'VisL2_3S
 
     for popsIn in popInput:
         for popsOut in popTarget:
+            conn_label = f'{popsIn}->{popsOut}'
+            
+            if conn_label in GaussianFit.columns:
+                p_max, sigma = eval(GaussianFit.loc['gapJunctions', conn_label])
+                probability = lambda d: p_max * np.exp(-d**2 / (2 * sigma**2))
+            elif conn_label in ConnectionProbability.columns:
+                p_base, p_mod, p_max = eval(ConnectionProbability.loc['gapJunctions', conn_label])
+                probability = p_base * p_mod 
+            else:
+                probability = 1.0
+            
             popConnection(netParams, popInput=popsIn, popTarget=popsOut, sec=sec, loc=loc, weight=weight,
-                          delay=delay, synMech=synMech, probability=1.0, gap=True)
+                          delay=delay, synMech=synMech, probability=probability, gap=True)
+
 
 ###############################################################################
 ## Printing network definitions for debugging
@@ -282,20 +448,30 @@ def initialize_netParams(netParams, model='Peri'):
     # Define network geometry and general parameters
     network_geometry(netParams)
     connectivity_params(netParams)
+
     # Define network populations
     L1_pop(netParams, model=model)
     L23_pop(netParams, model=model)
+    L4_pop(netParams, model=model) 
+    L5_pop(netParams, model=model)
+    L6_pop(netParams, model=model)
+
     # Define synaptic mechanisms
     initialize_synaptic_mechs(netParams)
     # Define LGN inputs
-    LGN_pop(netParams, label='LGN', layer='LGN', numCells=800, spkTimes=[[0+i,10+i,20+i,30+i]
-                                                                              for i in range(800)])
+    LGN_pop(netParams, label='LGN', layer='LGN', spikeFile='/spikes.h5')
+    #LGN_pop(netParams, label='LGN', layer='LGN', numCells=800, spkTimes=[[0+i,10+i,20+i,30+i]
+     #                                                                  for i in range(800)])
+
     # Connect LGN to pops
     LGN_inputs(netParams)
+
     # Define background input populations
     bkg_pop(netParams, popInput='Bkg', interval=1, number=int(1e6), start=0, noise=0.5)
+
     # Connect background inputs to V1 populations
     bkg_input(netParams)
+
     # Intra- and inter-layer connections
     inh_connections(netParams)
     exc_connections(netParams)
