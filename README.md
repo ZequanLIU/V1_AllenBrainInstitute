@@ -44,4 +44,3 @@ From the same folder, type `mpiexec -n <Node>  nrniv -mpi -python init.py`
 ## Bugs
 
 1. The models with `'AllActive'` segments are not currently working.
-2. Others?
