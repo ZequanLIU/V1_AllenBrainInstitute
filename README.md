@@ -32,9 +32,6 @@ should be created, depending on the architecture.
 
 From the same folder, type `mpiexec -n <Node>  nrniv -mpi -python init.py`
 
-## TO DO
-
-1. Add the rest of the layers
 
 ## TO DO in the future
 
